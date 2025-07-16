@@ -4,9 +4,17 @@ function App() {
   const [insult, setInsult] = useState("");
 
   useEffect(() => {
-    fetch("https://evilinsult.com/generate_insult.php?lang=en&type=json")
+    const apiUrl = 'https://evilinsult.com/generate_insult.php?lang=en&type=json';
+    // Using a CORS proxy to bypass the API's CORS restrictions.
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+
+    fetch(proxyUrl)
       .then((response) => response.json())
-      .then((data) => setInsult(data.insult))
+      .then((data) => {
+        // The actual API response is nested in the 'contents' property of the proxy's response
+        const insultData = JSON.parse(data.contents);
+        setInsult(insultData.insult);
+      })
       .catch((error) => console.error(error));
   }, []);
 
