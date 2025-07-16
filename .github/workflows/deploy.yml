@@ -18,9 +18,6 @@ jobs:
           npm install
           npm run build
 
-      - name: Install Backend Dependencies
-        run: npm install --prefix backend
-
       - name: Deploy to VPS
         uses: appleboy/scp-action@master
         with:
