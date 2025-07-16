@@ -4,7 +4,6 @@ function App() {
   const [insult, setInsult] = useState("");
 
   useEffect(() => {
-    // Fetching from our own server's proxy endpoint
     fetch("/api/insult")
       .then((response) => response.json())
       .then((data) => {
