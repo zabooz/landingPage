@@ -6,7 +6,7 @@ function App() {
   useEffect(() => {
     const apiUrl = 'https://evilinsult.com/generate_insult.php?lang=en&type=json';
     // Using a CORS proxy to bypass the API's CORS restrictions.
-    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(apiUrl)}`;
+    const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`;
 
     fetch(proxyUrl)
       .then((response) => response.json())
